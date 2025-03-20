@@ -1,3 +1,11 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
+theme = "terminal"
+[languages]
+ [languages.en]
+  languageName = "English"
+  weight = 1
+ [languages.es]
+  languageName = "Espanol"
+  weight = 2

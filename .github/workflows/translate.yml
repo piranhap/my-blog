@@ -1,0 +1,15 @@
+name: Translate Markdown
+on:
+  push:
+    branches: [main]
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Auto Translate
+        uses: Lin-jun-xiang/action-translate-readme@v2
+        with:
+          token: ${{ secrets.Action }}
+          langs: "es"
