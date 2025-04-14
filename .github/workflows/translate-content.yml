@@ -10,8 +10,17 @@ jobs:
   translate:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repository
+	uses: actions/checkout@v3
+	with:
+	  fetch-depth: 0
+
       - name: Run Translation Action
         uses: ./.github/actions/translate-content
         with:
           token: ${{ secrets.Action }}
           langs: "es"
+
+      - name: List Github Actions Directory
+	run: |
+	  ls -R .github/actions/
