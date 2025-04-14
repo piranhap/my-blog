@@ -1,0 +1,54 @@
+name: 'Auto Translate Content'
+description: 'Automatically translate Markdown files from content/en to content/es'
+author: 'piranha: https://github.com/piranhap'
+
+branding:
+  icon: "book-open"
+  color: "red"
+
+inputs:
+  token:
+    description: 'Secret token to authorize the bot account'
+    required: true
+  langs:
+    description: 'Target languages for translation (comma separated), e.g. "es"'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 3
+        token: ${{ inputs.token }}
+
+    - name: Set Up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.10'
+
+    - name: Install Dependencies
+      shell: bash
+      run: |
+        if [ -f "$GITHUB_ACTION_PATH/requirements.txt" ]; then
+          pip install -r $GITHUB_ACTION_PATH/requirements.txt
+        else
+          echo "⚠️ No requirements.txt found in the Action repository."
+        fi
+
+    - name: Translate Content
+      shell: bash
+      working-directory: .
+      run: |
+        export LANGS=${{ inputs.langs }}
+        python $GITHUB_ACTION_PATH/translation.py
+
+    - name: Git Commit
+      shell: bash
+      working-directory: .
+      run: |
+        git config --global user.email "username@users.noreply.github.com"
+        git config --global user.name "Continuous Integration"
+        chmod +x $GITHUB_ACTION_PATH/commit.sh
+        bash $GITHUB_ACTION_PATH/commit.sh

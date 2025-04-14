@@ -1,0 +1,17 @@
+name: Translate Content
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/en/**'  # Trigger only when changes occur in the source directory
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Translation Action
+        uses: ./.github/actions/translate-content
+        with:
+          token: ${{ secrets.Action }}
+          langs: "es"
