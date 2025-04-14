@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-	uses: actions/checkout@v3
-	with:
-	  fetch-depth: 0
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Run Translation Action
         uses: ./.github/actions/translate-content
@@ -22,5 +22,5 @@ jobs:
           langs: "es"
 
       - name: List Github Actions Directory
-	run: |
-	  ls -R .github/actions/
+        run: |
+          ls -R .github/actions/
