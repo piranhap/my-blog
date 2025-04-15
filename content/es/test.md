@@ -1,11 +1,8 @@
---------------------------------
-------
-
+---
 title: "Prueba en español"
 lang: "es"
 date: 2025-04-15T00:00:00Z
-
-------
+---
 
 
 
@@ -26,4 +23,4 @@ Nada como una buena traducción de calidad, ¿verdad?
 
 ¡Sí!
 
---------------------------------
+
