@@ -11,3 +11,5 @@ woooohoooo
 I am typing this to see if the content will be accurately translated for me 
 
 
+Nothing like some good quality translation, right?
+
